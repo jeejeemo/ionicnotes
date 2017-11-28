@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AuthPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {IonicPage, NavController} from 'ionic-angular';
+import {AuthService} from "../../../services/auth";
 
 @IonicPage()
 @Component({
@@ -15,11 +9,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AuthPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  /**
+   * Au final, on ne sert pas de cette page, mais vous pourriez l'utiliser comme page parente d'autres
+   * pages pour vérifier la connexion d'un utilisateur, au lieu d'un service.
+   *
+   * @param {NavController} navCtrl
+   * @param {AuthService} authService
+   */
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AuthPage');
+  constructor(public navCtrl: NavController, public authService: AuthService) {}
+
+  ionViewCanEnter() {
+    console.log(this.authService.isAuth);
+    if( !this.authService.isAuth ) {
+      this.navCtrl.setRoot('LoginPage');
+    }
+
+    /*
+    this.authService.checkAuthentified().then(auth => {
+      console.log(auth);
+        if( !auth ) {
+
+      }
+    });
+    */
   }
 
 }

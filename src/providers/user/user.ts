@@ -1,17 +1,19 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {ApiProvider} from "../api/api";
+import {HttpClient} from "@angular/common/http";
 
-/*
-  Generated class for the UserProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class UserProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello UserProvider Provider');
+  constructor(public api: ApiProvider, public http: HttpClient) {}
+
+  getAll(offset ?: number) {
+
+
+    return this.api.get('users');
   }
 
+  getNotesByUserId(id) {
+    return this.api.get('users/' + id);
+  }
 }

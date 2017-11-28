@@ -1,18 +1,29 @@
-<!--
-  Generated template for the LoginPage page.
+<ion-content padding class="auth-form">
+  <form [formGroup]="loginData" (ngSubmit)="submitLogin()">
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+    <div class="icon-login">
+      <ion-icon name="md-clipboard"></ion-icon>
+      <h1>IonicNotes</h1>
+    </div>
 
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
+    <ion-card>
+      <ion-list inset no-padding>
 
-</ion-header>
+        <ion-item>
+          <ion-input type="email" na placeholder="Adresse email" formControlName="email"></ion-input>
+        </ion-item>
 
+        <ion-item>
+          <ion-input type="password" placeholder="Mot de passe" formControlName="password"></ion-input>
+        </ion-item>
 
-<ion-content padding>
+      </ion-list>
+      <button ion-item  color="primary" block full text-center [disabled]="!loginData.valid">Me connecter</button>
+    </ion-card>
 
+    <div text-center>
+      <span (click)="goToRegister()">Je n'ai pas de compte</span>
+    </div>
+
+  </form>
 </ion-content>
